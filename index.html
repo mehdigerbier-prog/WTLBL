@@ -1,0 +1,1149 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>White Label Partenaire — Service d'accompagnement financier externalisé</title>
+  <meta name="description" content="Un service partenaire premium permettant aux professionnels d'apporter à leurs clients un accompagnement financier, assurance et protection en marque blanche." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #07090f;
+      --bg-2: #0c111d;
+      --card: rgba(255, 255, 255, 0.075);
+      --card-2: rgba(255, 255, 255, 0.11);
+      --border: rgba(255, 255, 255, 0.14);
+      --text: #f8fafc;
+      --muted: #a7b0c3;
+      --soft: #d8deea;
+      --gold: #d6b46a;
+      --gold-2: #f3d992;
+      --blue: #6ea8ff;
+      --success: #60d394;
+      --danger: #ff7a90;
+      --shadow: 0 24px 80px rgba(0, 0, 0, 0.35);
+      --radius-xl: 28px;
+      --radius-lg: 22px;
+      --radius-md: 16px;
+      --max: 1180px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+      background: radial-gradient(circle at top left, rgba(214, 180, 106, 0.16), transparent 32%),
+                  radial-gradient(circle at 80% 10%, rgba(110, 168, 255, 0.18), transparent 34%),
+                  linear-gradient(180deg, var(--bg), #05060a 52%, #080b12);
+      color: var(--text);
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background-image: linear-gradient(rgba(255,255,255,0.035) 1px, transparent 1px),
+                        linear-gradient(90deg, rgba(255,255,255,0.035) 1px, transparent 1px);
+      background-size: 58px 58px;
+      mask-image: linear-gradient(to bottom, rgba(0,0,0,0.7), transparent 75%);
+      z-index: -1;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .container {
+      width: min(100% - 40px, var(--max));
+      margin: 0 auto;
+    }
+
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: blur(18px);
+      background: rgba(7, 9, 15, 0.72);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .nav-inner {
+      height: 78px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      font-size: 18px;
+    }
+
+    .brand-mark {
+      width: 38px;
+      height: 38px;
+      border-radius: 13px;
+      background: linear-gradient(135deg, var(--gold), var(--blue));
+      display: grid;
+      place-items: center;
+      box-shadow: 0 0 30px rgba(214,180,106,0.28);
+      font-weight: 900;
+      color: #07090f;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 26px;
+      color: var(--muted);
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .nav-links a:hover {
+      color: var(--text);
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      border-radius: 999px;
+      padding: 14px 20px;
+      font-weight: 800;
+      font-size: 14px;
+      border: 1px solid rgba(255,255,255,0.16);
+      transition: transform 0.25s ease, background 0.25s ease, border 0.25s ease;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--gold), var(--gold-2));
+      color: #101010;
+      border-color: transparent;
+      box-shadow: 0 18px 50px rgba(214,180,106,0.22);
+    }
+
+    .btn-secondary {
+      background: rgba(255,255,255,0.07);
+      color: var(--text);
+    }
+
+    .hero {
+      position: relative;
+      padding: 92px 0 86px;
+      min-height: calc(100vh - 78px);
+      display: flex;
+      align-items: center;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.04fr 0.96fr;
+      gap: 64px;
+      align-items: center;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 14px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.12);
+      color: var(--soft);
+      font-weight: 700;
+      font-size: 13px;
+      margin-bottom: 24px;
+    }
+
+    .pulse {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--success);
+      box-shadow: 0 0 0 8px rgba(96,211,148,0.12);
+    }
+
+    h1 {
+      font-size: clamp(42px, 7vw, 78px);
+      line-height: 0.94;
+      letter-spacing: -0.075em;
+      max-width: 760px;
+      margin-bottom: 28px;
+    }
+
+    .gradient-text {
+      background: linear-gradient(135deg, #ffffff 20%, var(--gold-2) 48%, var(--blue));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .hero p {
+      color: var(--muted);
+      font-size: clamp(17px, 2vw, 21px);
+      line-height: 1.65;
+      max-width: 640px;
+      margin-bottom: 32px;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-bottom: 36px;
+    }
+
+    .hero-proof {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+      max-width: 620px;
+    }
+
+    .proof-card {
+      padding: 18px;
+      border-radius: 18px;
+      background: rgba(255,255,255,0.055);
+      border: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .proof-card strong {
+      display: block;
+      font-size: 22px;
+      letter-spacing: -0.04em;
+      margin-bottom: 5px;
+    }
+
+    .proof-card span {
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    .mockup-wrap {
+      position: relative;
+    }
+
+    .orb {
+      position: absolute;
+      width: 310px;
+      height: 310px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(214,180,106,0.35), transparent 66%);
+      filter: blur(8px);
+      top: -80px;
+      right: -80px;
+      animation: float 7s ease-in-out infinite;
+      z-index: -1;
+    }
+
+    @keyframes float {
+      0%,100% { transform: translateY(0); }
+      50% { transform: translateY(22px); }
+    }
+
+    .dashboard {
+      border-radius: 34px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.13), rgba(255,255,255,0.055));
+      border: 1px solid rgba(255,255,255,0.16);
+      box-shadow: var(--shadow);
+      padding: 18px;
+      backdrop-filter: blur(22px);
+      transform: rotate(1.5deg);
+    }
+
+    .dash-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 10px 18px;
+    }
+
+    .dots {
+      display: flex;
+      gap: 7px;
+    }
+
+    .dots span {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.22);
+    }
+
+    .dash-label {
+      color: var(--muted);
+      font-weight: 800;
+      font-size: 12px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .dash-main {
+      border-radius: 24px;
+      background: rgba(5, 8, 15, 0.74);
+      border: 1px solid rgba(255,255,255,0.1);
+      padding: 22px;
+      overflow: hidden;
+    }
+
+    .metric-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      margin-bottom: 18px;
+    }
+
+    .metric {
+      padding: 18px;
+      border-radius: 20px;
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.09);
+    }
+
+    .metric span {
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .metric strong {
+      display: block;
+      margin-top: 8px;
+      font-size: 28px;
+      letter-spacing: -0.055em;
+    }
+
+    .flow-card {
+      padding: 18px;
+      border-radius: 20px;
+      background: linear-gradient(135deg, rgba(214,180,106,0.12), rgba(110,168,255,0.09));
+      border: 1px solid rgba(255,255,255,0.1);
+      margin-bottom: 18px;
+    }
+
+    .flow-card h3 {
+      font-size: 17px;
+      margin-bottom: 12px;
+    }
+
+    .pipeline {
+      display: grid;
+      gap: 10px;
+    }
+
+    .pipe-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 13px 14px;
+      border-radius: 14px;
+      background: rgba(255,255,255,0.06);
+      color: var(--soft);
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .pipe-item small {
+      color: var(--success);
+      font-size: 12px;
+    }
+
+    .mini-qr {
+      display: grid;
+      grid-template-columns: 84px 1fr;
+      gap: 14px;
+      align-items: center;
+      padding: 16px;
+      border-radius: 20px;
+      background: rgba(255,255,255,0.06);
+    }
+
+    .qr-box {
+      width: 84px;
+      height: 84px;
+      border-radius: 16px;
+      background:
+        linear-gradient(90deg, #fff 10px, transparent 10px) 0 0/20px 20px,
+        linear-gradient(#fff 10px, transparent 10px) 0 0/20px 20px,
+        #111827;
+      border: 8px solid #fff;
+    }
+
+    .mini-qr strong {
+      display: block;
+      margin-bottom: 6px;
+    }
+
+    .mini-qr span {
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.5;
+    }
+
+    section {
+      padding: 92px 0;
+      position: relative;
+    }
+
+    .section-head {
+      max-width: 760px;
+      margin-bottom: 44px;
+    }
+
+    .eyebrow {
+      color: var(--gold-2);
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      font-size: 12px;
+      margin-bottom: 14px;
+    }
+
+    h2 {
+      font-size: clamp(32px, 4.8vw, 56px);
+      line-height: 1;
+      letter-spacing: -0.065em;
+      margin-bottom: 18px;
+    }
+
+    .section-head p {
+      color: var(--muted);
+      font-size: 18px;
+      line-height: 1.7;
+    }
+
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+    }
+
+    .glass-card {
+      border-radius: var(--radius-xl);
+      background: var(--card);
+      border: 1px solid var(--border);
+      box-shadow: 0 18px 70px rgba(0,0,0,0.18);
+      backdrop-filter: blur(18px);
+      padding: 30px;
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.3s ease, background 0.3s ease;
+    }
+
+    .glass-card:hover {
+      transform: translateY(-7px);
+      background: var(--card-2);
+    }
+
+    .number {
+      width: 44px;
+      height: 44px;
+      border-radius: 15px;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(135deg, var(--gold), var(--blue));
+      color: #080a10;
+      font-weight: 900;
+      margin-bottom: 22px;
+    }
+
+    .glass-card h3 {
+      font-size: 22px;
+      letter-spacing: -0.04em;
+      margin-bottom: 13px;
+    }
+
+    .glass-card p {
+      color: var(--muted);
+      line-height: 1.65;
+      font-size: 15px;
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 16px;
+      display: grid;
+      place-items: center;
+      background: rgba(214,180,106,0.12);
+      border: 1px solid rgba(214,180,106,0.18);
+      margin-bottom: 20px;
+      font-size: 22px;
+    }
+
+    .split {
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 42px;
+      align-items: center;
+    }
+
+    .client-panel {
+      border-radius: 34px;
+      padding: 26px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.1), rgba(255,255,255,0.045));
+      border: 1px solid rgba(255,255,255,0.14);
+      box-shadow: var(--shadow);
+    }
+
+    .client-line {
+      display: flex;
+      gap: 16px;
+      padding: 20px;
+      border-radius: 20px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.09);
+      margin-bottom: 14px;
+    }
+
+    .client-line:last-child {
+      margin-bottom: 0;
+    }
+
+    .check {
+      width: 28px;
+      height: 28px;
+      flex: 0 0 auto;
+      border-radius: 50%;
+      background: rgba(96,211,148,0.14);
+      color: var(--success);
+      display: grid;
+      place-items: center;
+      font-weight: 900;
+    }
+
+    .client-line strong {
+      display: block;
+      margin-bottom: 5px;
+      letter-spacing: -0.02em;
+    }
+
+    .client-line span {
+      color: var(--muted);
+      line-height: 1.55;
+      font-size: 14px;
+    }
+
+    .sectors {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+    }
+
+    .sector {
+      padding: 24px;
+      border-radius: 22px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.1);
+      min-height: 136px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: transform 0.25s ease;
+    }
+
+    .sector:hover {
+      transform: translateY(-5px);
+    }
+
+    .sector span {
+      font-size: 27px;
+    }
+
+    .sector strong {
+      letter-spacing: -0.035em;
+    }
+
+    .story {
+      border-radius: 38px;
+      padding: 32px;
+      background: linear-gradient(135deg, rgba(214,180,106,0.1), rgba(110,168,255,0.09));
+      border: 1px solid rgba(255,255,255,0.13);
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+    }
+
+    .story-step {
+      padding: 24px;
+      border-radius: 24px;
+      background: rgba(5,8,15,0.5);
+      border: 1px solid rgba(255,255,255,0.09);
+    }
+
+    .story-step small {
+      color: var(--gold-2);
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 0.11em;
+      font-size: 11px;
+    }
+
+    .story-step h3 {
+      margin: 14px 0 10px;
+      letter-spacing: -0.04em;
+      font-size: 19px;
+    }
+
+    .story-step p {
+      color: var(--muted);
+      line-height: 1.6;
+      font-size: 14px;
+    }
+
+    .tools-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .tool-card {
+      min-height: 230px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .tool-visual {
+      height: 92px;
+      border-radius: 20px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.08);
+      margin-bottom: 22px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .tool-visual::after {
+      content: "";
+      position: absolute;
+      inset: 20px;
+      border-radius: 14px;
+      background: linear-gradient(90deg, rgba(214,180,106,0.55), rgba(110,168,255,0.45));
+      filter: blur(20px);
+    }
+
+    .contact {
+      padding-bottom: 120px;
+    }
+
+    .contact-box {
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 36px;
+      padding: 34px;
+      border-radius: 38px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.11), rgba(255,255,255,0.055));
+      border: 1px solid rgba(255,255,255,0.14);
+      box-shadow: var(--shadow);
+    }
+
+    form {
+      display: grid;
+      gap: 14px;
+    }
+
+    input, select, textarea {
+      width: 100%;
+      border: 1px solid rgba(255,255,255,0.14);
+      background: rgba(255,255,255,0.07);
+      color: var(--text);
+      border-radius: 16px;
+      padding: 16px 17px;
+      font: inherit;
+      outline: none;
+    }
+
+    input::placeholder, textarea::placeholder {
+      color: rgba(255,255,255,0.45);
+    }
+
+    select option {
+      color: #111827;
+    }
+
+    textarea {
+      min-height: 110px;
+      resize: vertical;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+
+    .footer {
+      border-top: 1px solid rgba(255,255,255,0.08);
+      padding: 34px 0;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (max-width: 980px) {
+      .nav-links {
+        display: none;
+      }
+
+      .hero-grid,
+      .split,
+      .contact-box {
+        grid-template-columns: 1fr;
+      }
+
+      .dashboard {
+        transform: none;
+      }
+
+      .steps,
+      .features-grid,
+      .tools-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .sectors,
+      .story {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .container {
+        width: min(100% - 26px, var(--max));
+      }
+
+      .hero {
+        padding-top: 54px;
+      }
+
+      .hero-proof,
+      .metric-row,
+      .steps,
+      .features-grid,
+      .sectors,
+      .story,
+      .tools-grid,
+      .form-row {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-actions {
+        flex-direction: column;
+      }
+
+      .btn {
+        width: 100%;
+      }
+
+      .glass-card,
+      .contact-box {
+        padding: 22px;
+      }
+
+      section {
+        padding: 68px 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav class="nav">
+    <div class="container nav-inner">
+      <a href="#" class="brand">
+        <span class="brand-mark">W</span>
+        <span>White Label Partenaire</span>
+      </a>
+      <div class="nav-links">
+        <a href="#fonctionnement">Fonctionnement</a>
+        <a href="#partenaires">Partenaires</a>
+        <a href="#outils">Outils</a>
+        <a href="#contact">Devenir partenaire</a>
+      </div>
+      <a class="btn btn-secondary" href="#contact">Demander une démo</a>
+    </div>
+  </nav>
+
+  <main>
+    <header class="hero">
+      <div class="container hero-grid">
+        <div class="reveal">
+          <div class="badge"><span class="pulse"></span> Service externalisé pour professionnels partenaires</div>
+          <h1>Le service financier premium que vos clients peuvent demander d’eux-mêmes.</h1>
+          <p>
+            Proposez à vos clients un accompagnement en optimisation, assurance et protection, sans gérer la partie technique. Votre entreprise garde la relation de confiance, notre équipe prend le relais.
+          </p>
+          <div class="hero-actions">
+            <a href="#contact" class="btn btn-primary">Découvrir le programme</a>
+            <a href="#fonctionnement" class="btn btn-secondary">Voir le fonctionnement</a>
+          </div>
+          <div class="hero-proof">
+            <div class="proof-card">
+              <strong>0 vente</strong>
+              <span>technique pour le partenaire</span>
+            </div>
+            <div class="proof-card">
+              <strong>3 étapes</strong>
+              <span>pour déclencher un bilan client</span>
+            </div>
+            <div class="proof-card">
+              <strong>100%</strong>
+              <span>orienté valeur client</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="mockup-wrap reveal">
+          <div class="orb"></div>
+          <div class="dashboard">
+            <div class="dash-top">
+              <div class="dots"><span></span><span></span><span></span></div>
+              <div class="dash-label">Espace partenaire</div>
+            </div>
+            <div class="dash-main">
+              <div class="metric-row">
+                <div class="metric">
+                  <span>Demandes reçues</span>
+                  <strong>24</strong>
+                </div>
+                <div class="metric">
+                  <span>Clients accompagnés</span>
+                  <strong>17</strong>
+                </div>
+              </div>
+              <div class="flow-card">
+                <h3>Parcours client simplifié</h3>
+                <div class="pipeline">
+                  <div class="pipe-item">QR code scanné <small>validé</small></div>
+                  <div class="pipe-item">Consentement client <small>RGPD</small></div>
+                  <div class="pipe-item">Rappel conseiller <small>programmé</small></div>
+                </div>
+              </div>
+              <div class="mini-qr">
+                <div class="qr-box"></div>
+                <div>
+                  <strong>Bilan client offert</strong>
+                  <span>Une porte d’entrée simple, rassurante et non agressive pour générer des demandes qualifiées.</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <section id="fonctionnement">
+      <div class="container">
+        <div class="section-head reveal">
+          <div class="eyebrow">Fonctionnement</div>
+          <h2>Une mécanique simple, pensée pour ne pas ralentir votre activité.</h2>
+          <p>Le partenaire reste dans son métier. Il déclenche uniquement une mise en relation claire et consentie. Le service White Label prend ensuite toute la partie analyse, conseil et suivi.</p>
+        </div>
+        <div class="steps">
+          <div class="glass-card reveal">
+            <div class="number">1</div>
+            <h3>Le partenaire présente le service</h3>
+            <p>Lors d’un projet client, le professionnel propose un bilan complémentaire : contrats, protection, mensualités, assurances ou situation financière.</p>
+          </div>
+          <div class="glass-card reveal">
+            <div class="number">2</div>
+            <h3>Le client demande son bilan</h3>
+            <p>Le client scanne un QR code, remplit un formulaire ou accepte une prise de contact. La démarche vient de lui, avec consentement clair.</p>
+          </div>
+          <div class="glass-card reveal">
+            <div class="number">3</div>
+            <h3>Le conseiller prend le relais</h3>
+            <p>Audit, étude, devis, comparaison, accompagnement et suivi administratif sont gérés par une équipe spécialisée.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+        <div class="section-head reveal">
+          <div class="eyebrow">Valeur partenaire</div>
+          <h2>Un service qui renforce votre relation client, sans complexité.</h2>
+          <p>Le modèle a été pensé pour apporter une vraie valeur commerciale au partenaire : fidélisation, différenciation, revenus complémentaires et image premium.</p>
+        </div>
+        <div class="features-grid">
+          <div class="glass-card reveal">
+            <div class="icon">◆</div>
+            <h3>Image premium</h3>
+            <p>Votre entreprise propose un service additionnel haut de gamme, utile et rassurant pour ses clients.</p>
+          </div>
+          <div class="glass-card reveal">
+            <div class="icon">↗</div>
+            <h3>Revenus complémentaires</h3>
+            <p>Chaque client signé peut générer une rémunération partenaire, sans traitement administratif de votre côté.</p>
+          </div>
+          <div class="glass-card reveal">
+            <div class="icon">✓</div>
+            <h3>Zéro technique</h3>
+            <p>Vous ne vendez pas d’assurance, vous ne conseillez pas juridiquement, vous déclenchez uniquement le service.</p>
+          </div>
+          <div class="glass-card reveal">
+            <div class="icon">∞</div>
+            <h3>Fidélisation</h3>
+            <p>Le client garde une perception positive de votre entreprise, qui l’a aidé au-delà de son besoin initial.</p>
+          </div>
+          <div class="glass-card reveal">
+            <div class="icon">⌁</div>
+            <h3>Expérience fluide</h3>
+            <p>QR code, formulaire, rappel, reporting : tout est conçu pour rendre la recommandation simple.</p>
+          </div>
+          <div class="glass-card reveal">
+            <div class="icon">◎</div>
+            <h3>Différenciation locale</h3>
+            <p>Vous vous démarquez de vos concurrents avec un accompagnement concret et utile pour vos clients.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container split">
+        <div class="section-head reveal">
+          <div class="eyebrow">Client final</div>
+          <h2>Une communication centrée sur l’aide, pas sur la vente.</h2>
+          <p>Le client ne reçoit pas un discours commercial agressif. Il accède à un bilan simple, humain et personnalisé pour comprendre s’il peut améliorer sa situation.</p>
+        </div>
+        <div class="client-panel reveal">
+          <div class="client-line">
+            <div class="check">✓</div>
+            <div><strong>Optimiser ses contrats</strong><span>Identifier les doublons, contrats obsolètes, cotisations élevées ou protections inadaptées.</span></div>
+          </div>
+          <div class="client-line">
+            <div class="check">✓</div>
+            <div><strong>Protéger sa famille</strong><span>Vérifier que les garanties correspondent réellement à la situation personnelle et professionnelle.</span></div>
+          </div>
+          <div class="client-line">
+            <div class="check">✓</div>
+            <div><strong>Retrouver du confort financier</strong><span>Étudier des économies potentielles ou des solutions pour mieux absorber certains projets.</span></div>
+          </div>
+          <div class="client-line">
+            <div class="check">✓</div>
+            <div><strong>Être accompagné localement</strong><span>Un interlocuteur humain, accessible, capable d’expliquer simplement les solutions.</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="partenaires">
+      <div class="container">
+        <div class="section-head reveal">
+          <div class="eyebrow">Cibles</div>
+          <h2>Des partenaires au cœur des moments de vie.</h2>
+          <p>Le service prend tout son sens lorsque le client vit un projet important : achat, travaux, création, changement de situation, besoin de protection ou recherche de budget.</p>
+        </div>
+        <div class="sectors">
+          <div class="sector reveal"><span>⌂</span><strong>Immobilier</strong></div>
+          <div class="sector reveal"><span>▣</span><strong>Automobile</strong></div>
+          <div class="sector reveal"><span>◫</span><strong>Cuisinistes</strong></div>
+          <div class="sector reveal"><span>◬</span><strong>Artisans & BTP</strong></div>
+          <div class="sector reveal"><span>◎</span><strong>Commerces</strong></div>
+          <div class="sector reveal"><span>◈</span><strong>Comptables</strong></div>
+          <div class="sector reveal"><span>↟</span><strong>Entrepreneurs</strong></div>
+          <div class="sector reveal"><span>∞</span><strong>Réseaux business</strong></div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+        <div class="section-head reveal">
+          <div class="eyebrow">Expérience</div>
+          <h2>Exemple de parcours client.</h2>
+          <p>Le service s’intègre naturellement dans le parcours d’achat ou de projet, sans forcer le partenaire à devenir commercial assurance.</p>
+        </div>
+        <div class="story reveal">
+          <div class="story-step">
+            <small>Étape 01</small>
+            <h3>Projet client</h3>
+            <p>Un client prépare une cuisine, une voiture, des travaux ou un achat immobilier.</p>
+          </div>
+          <div class="story-step">
+            <small>Étape 02</small>
+            <h3>Service proposé</h3>
+            <p>Le partenaire lui propose un bilan complémentaire pour vérifier sa situation.</p>
+          </div>
+          <div class="story-step">
+            <small>Étape 03</small>
+            <h3>Demande volontaire</h3>
+            <p>Le client scanne le QR code et demande à être rappelé par un conseiller.</p>
+          </div>
+          <div class="story-step">
+            <small>Étape 04</small>
+            <h3>Valeur créée</h3>
+            <p>Le conseiller détecte des pistes d’optimisation ou de protection adaptées au client.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="outils">
+      <div class="container">
+        <div class="section-head reveal">
+          <div class="eyebrow">Outils</div>
+          <h2>Une infrastructure pensée pour générer des demandes qualifiées.</h2>
+          <p>Le partenaire doit avoir le moins d’effort possible. Les outils rendent la captation simple, traçable et professionnelle.</p>
+        </div>
+        <div class="tools-grid">
+          <div class="glass-card tool-card reveal">
+            <div>
+              <div class="tool-visual"></div>
+              <h3>QR codes & NFC</h3>
+              <p>Des supports physiques permettant au client de demander son bilan en quelques secondes.</p>
+            </div>
+          </div>
+          <div class="glass-card tool-card reveal">
+            <div>
+              <div class="tool-visual"></div>
+              <h3>Landing pages partenaires</h3>
+              <p>Chaque partenaire peut disposer d’une page dédiée, co-brandée ou neutre selon le positionnement.</p>
+            </div>
+          </div>
+          <div class="glass-card tool-card reveal">
+            <div>
+              <div class="tool-visual"></div>
+              <h3>Formulaires RGPD</h3>
+              <p>Collecte claire du consentement, demande volontaire du client et traçabilité de la mise en relation.</p>
+            </div>
+          </div>
+          <div class="glass-card tool-card reveal">
+            <div>
+              <div class="tool-visual"></div>
+              <h3>Dashboard partenaire</h3>
+              <p>Suivi des demandes, statuts, volumes et rémunérations potentielles.</p>
+            </div>
+          </div>
+          <div class="glass-card tool-card reveal">
+            <div>
+              <div class="tool-visual"></div>
+              <h3>Reporting mensuel</h3>
+              <p>Vision claire de la valeur créée pour les clients et pour l’entreprise partenaire.</p>
+            </div>
+          </div>
+          <div class="glass-card tool-card reveal">
+            <div>
+              <div class="tool-visual"></div>
+              <h3>Supports commerciaux</h3>
+              <p>Affiches, flyers, cartes, scripts simples et messages prêts à l’emploi pour les équipes.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="contact">
+      <div class="container">
+        <div class="contact-box reveal">
+          <div>
+            <div class="eyebrow">Programme partenaire</div>
+            <h2>Proposez un service utile sans complexifier votre métier.</h2>
+            <p style="color: var(--muted); line-height: 1.7; font-size: 17px; margin-top: 18px;">
+              Le programme White Label Partenaire s’adresse aux professionnels qui veulent renforcer leur relation client, créer de la valeur et développer un canal de revenus complémentaire sans gestion technique.
+            </p>
+            <p style="color: var(--soft); line-height: 1.7; font-size: 15px; margin-top: 20px;">
+              Remplissez le formulaire pour recevoir une présentation du modèle et étudier une mise en place adaptée à votre activité.
+            </p>
+          </div>
+          <form onsubmit="event.preventDefault(); alert('Merci, votre demande de démonstration a bien été préparée.');">
+            <div class="form-row">
+              <input type="text" placeholder="Nom" required>
+              <input type="text" placeholder="Prénom" required>
+            </div>
+            <input type="text" placeholder="Entreprise" required>
+            <div class="form-row">
+              <input type="tel" placeholder="Téléphone" required>
+              <input type="email" placeholder="Email" required>
+            </div>
+            <select required>
+              <option value="">Secteur d’activité</option>
+              <option>Immobilier</option>
+              <option>Automobile</option>
+              <option>BTP / Artisanat</option>
+              <option>Commerce</option>
+              <option>Comptabilité / Conseil</option>
+              <option>Autre</option>
+            </select>
+            <textarea placeholder="Décrivez rapidement votre activité et le volume approximatif de clients mensuels"></textarea>
+            <button class="btn btn-primary" type="submit">Découvrir le programme partenaire</button>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <span>© 2026 — White Label Partenaire</span>
+      <span>Accompagnement financier, optimisation & protection client</span>
+    </div>
+  </footer>
+
+  <script>
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.12 });
+
+    document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
+  </script>
+</body>
+</html>
